@@ -366,10 +366,11 @@
             font-size: 1.4cqi;
             margin-bottom: 1cqi;
             font-weight: 600;
+            margin-top: 1.5cqi;
         }
 
-        .settings-panel h4:not(:first-child) {
-            margin-top: 1.5cqi;
+        .settings-panel h4:first-child {
+            margin-top: 0;
         }
 
         .options-row {
@@ -427,6 +428,8 @@
             transition: all 0.2s;
             flex: 1;
             text-align: center;
+            display: block; /* Důležité pro odkaz */
+            text-decoration: none;
         }
         .action-btn:hover {
             background: var(--color-bg-tint);
@@ -527,20 +530,13 @@
             <div class="options-row" style="gap: 0.5cqi;">
                 <button id="exportPdfBtn" class="action-btn">📄 Do PDF</button>
             </div>
-        </div>
-            <h4>Další možnosti a export</h4>
-            <div class="options-row" style="gap: 0.5cqi; margin-bottom: 0.5cqi;">
-                <button id="toggleAnimBtn" class="action-btn active">✨ Animace: ZAP</button>
-            </div>
-            <div class="options-row" style="gap: 0.5cqi;">
-                <button id="exportPdfBtn" class="action-btn">📄 Do PDF</button>
-            </div>
-
+            
             <h4>Navigace</h4>
             <div class="options-row" style="gap: 0.5cqi;">
-                <a href="https://darthcrafttom.github.io/moje/" class="action-btn" style="text-decoration: none;">🏠 Zpět na rozcestník</a>
+                <a href="https://darthcrafttom.github.io/moje/" class="action-btn">🏠 Zpět na rozcestník</a>
             </div>
         </div>
+
         <!-- Navigace -->
         <div class="controls">
             <button id="prevBtn" title="Předchozí snímek">❮</button>
