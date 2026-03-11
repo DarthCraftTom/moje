@@ -112,12 +112,13 @@
 
         /* Kruh DOJRP - Vycentrování textů křížem a plynulý posun celého bloku */
         .circle-area { position: relative; width: 100%; flex-grow: 1; display: flex; align-items: center; justify-content: center; gap: 0; transition: gap 0.8s cubic-bezier(0.25, 1, 0.5, 1); }
-        .circle-area.moved { gap: 6cqi; } /* Plynulé odsunutí textu a kruhu od sebe */
+        .circle-area.moved { gap: 6cqi; } 
         
         .circle-chart { width: 35cqi; height: 35cqi; border-radius: 50%; border: 2px solid var(--color-stroke); display: flex; flex-wrap: wrap; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5), var(--glow); background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); flex-shrink: 0;}
+        
         .circle-part { width: 50%; height: 50%; display: flex; font-family: var(--font-sans); font-size: 2.3cqi; font-weight: 600; color: #fff; border: 1px solid rgba(255,255,255,0.05); background: linear-gradient(135deg, rgba(255,170,0,0.5), rgba(255,170,0,0.1)); }
         
-        /* Explicitní zarovnání textů doprostřed kruhu pomocí paddingu + Barvy značky pro všechny 4 kvadranty */
+        /* Explicitní zarovnání textů doprostřed kruhu pomocí paddingu */
         .circle-part:nth-child(1) { padding: 3cqi 2cqi 2cqi 3cqi; justify-content: flex-end; align-items: flex-end; text-align: right; }
         .circle-part:nth-child(2) { padding: 3cqi 3cqi 2cqi 2cqi; justify-content: flex-start; align-items: flex-end; text-align: left; }
         .circle-part:nth-child(3) { padding: 2cqi 2cqi 3cqi 3cqi; justify-content: flex-end; align-items: flex-start; text-align: right; }
@@ -127,12 +128,12 @@
         .circle-text-side { max-width: 0; overflow: hidden; font-family: var(--font-display); font-size: 8cqi; color: var(--color-main); text-transform: uppercase; line-height: 1.1; text-shadow: var(--glow); opacity: 0; transform: translateX(-20px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); white-space: nowrap; }
         .circle-text-side.visible { max-width: 50cqi; opacity: 1; transform: translateX(0); overflow: visible;}
 
-        /* 4x4 Mřížka - dynamická velikost na celou plochu */
+        /* 4x4 Mřížka */
         .grid-4x4 { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(4, 1fr); gap: 1cqi; flex: 1; min-height: 0; padding-bottom: 1cqi; }
         .tile { width: 100%; height: 100%; background: #11141d; border: 1px solid var(--color-stroke); border-radius: 12px; padding: 1cqi; text-align: center; font-family: var(--font-display); font-size: 2.5cqi; color: #fff; display: flex; align-items: center; justify-content: center; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0,0,0,0.5); opacity: 0; transform: scale(0.5) translateY(20px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); transition-delay: var(--delay); }
         .slide.active .tile { opacity: 1; transform: scale(1) translateY(0); }
         
-        /* Layouty pro obrázky (Zajištění nepřetékání s novými poměry) */
+        /* Layouty pro obrázky */
         .image-layout-3 { flex: 1; min-height: 0; display: grid; grid-template-rows: 1fr 1.8fr; grid-template-columns: 1fr 1fr; gap: 2cqi; overflow: hidden; padding-bottom: 1cqi; }
         .image-layout-3 .img-top { grid-column: 1 / -1; }
         .image-layout-3 img { width: 100%; height: 100%; object-fit: cover; min-height: 0; border-radius: 12px; border: 1px solid var(--color-stroke); box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
@@ -144,10 +145,10 @@
         .bg-dark-overlay { background: rgba(0,0,0,0.8); position: absolute; top:0; left:0; width: 100%; height:100%; z-index:-1;}
         .bg-image { position: absolute; top:0; left:0; width: 100%; height: 100%; object-fit: cover; z-index: -2; opacity: 0.5; }
 
-        /* Interaktivní mapa */
+        /* Interaktivní mapa (transform-origin 0 0 pro správný zoom na kurzor) */
         .map-container { position: relative; width: 100%; height: 100%; flex-grow: 1; overflow: hidden; border-radius: 12px; border: 2px solid var(--color-stroke); cursor: grab; background: #111; min-height: 0;}
         .map-container:active { cursor: grabbing; }
-        .map-content { width: 100%; height: 100%; background-image: url('map1.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center; transform-origin: center; transition: transform 0.1s; }
+        .map-content { width: 100%; height: 100%; background-image: url('map1.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center; transform-origin: 0 0; transition: transform 0.1s; }
         .map-switch { position: absolute; bottom: 2cqi; right: 2cqi; background: var(--color-main); color: #000; border: none; padding: 1cqi 2cqi; font-family: var(--font-display); font-size: 2cqi; border-radius: 8px; cursor: pointer; z-index: 10; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.5);}
 
         /* --- Policejní majáky (Slajd 8) --- */
@@ -171,7 +172,7 @@
             80%, 50% {opacity: 0;} 
         }
 
-        /* --- Animovaný Graf (Slajd 9) --- Zvětšeno */
+        /* --- Animovaný Graf (Slajd 9) --- */
         .scatter-chart-container { width: 100%; flex-grow: 1; min-height: 0; position: relative; display: flex; justify-content: center; align-items: center; margin-top: 5cqi; }
         .scatter-svg { width: 95%; max-height: 85vh; overflow: visible; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8)); }
         .scatter-grid line { stroke: rgba(255,255,255,0.06); stroke-width: 0.5; }
@@ -286,16 +287,15 @@
             <h1 class="huge-text" style="color: #fff; text-shadow: none;">Co to je?</h1>
         </div>
 
-        <!-- 4. a 5. Kruh DOJRP (Vycentrované texty a plynulý posun) -->
+        <!-- 4. a 5. Kruh DOJRP (Třída fragment přidána pro postupné zobrazení každé čtvrtiny) -->
         <div class="slide">
             <h2 class="content-title"><span>DOJRP</span></h2>
             <div class="circle-area" id="circleArea">
                 <div class="circle-chart">
-                    <!-- Texty zatlačené ke středu pomocí paddingů a sjednocené barvy -->
-                    <div class="circle-part">Pro zábavu</div>
-                    <div class="circle-part">Na IZS a CIV</div>
-                    <div class="circle-part">Bez ekonomiky</div>
-                    <div class="circle-part">RP akce pro IZS a CIV</div>
+                    <div class="circle-part fragment fade-only">Pro zábavu</div>
+                    <div class="circle-part fragment fade-only">Na IZS a CIV</div>
+                    <div class="circle-part fragment fade-only">Bez ekonomiky</div>
+                    <div class="circle-part fragment fade-only">RP akce pro IZS a CIV</div>
                 </div>
                 <div class="circle-text-side fragment" id="circleText">Zjednodušené<br>RP</div>
             </div>
@@ -306,7 +306,7 @@
             <h1 class="giant-text">Kreativita</h1>
         </div>
 
-        <!-- 7. Ukázky kreativity (Mřížka vyplňující celou obrazovku) -->
+        <!-- 7. Ukázky kreativity -->
         <div class="slide">
             <div class="grid-4x4">
                 <div class="tile" style="--delay: 0.1s">Vraždy</div><div class="tile" style="--delay: 0.2s">Ujíždění hlídce</div><div class="tile" style="--delay: 0.3s">Dopravní nehody</div><div class="tile" style="--delay: 0.4s">Technické pomoci</div>
@@ -320,7 +320,6 @@
         <div class="slide title-slide">
             <h1 class="huge-text" style="color: #fff; text-shadow: none;">Nahlašovat se za trestné činy?</h1>
             <h1 class="giant-text fragment slam" style="color: var(--color-main); margin-top: 5cqi;">ANO!</h1>
-            <!-- Světla reagující na zobrazení nadpisu -->
             <div class="police-light red"></div>
             <div class="police-light blue"></div>
         </div>
@@ -338,11 +337,9 @@
                             </marker>
                         </defs>
 
-                        <!-- 1. kliknutí: Zobrazení samotného grafu (mřížka a osy) -->
+                        <!-- 1. kliknutí -->
                         <g class="fragment fade-only">
-                            <!-- Dokonale symetrická a uzavřená mřížka -->
                             <g class="scatter-grid">
-                                <!-- Vertikální čáry -->
                                 <line x1="20" y1="0" x2="20" y2="100" />
                                 <line x1="40" y1="0" x2="40" y2="100" />
                                 <line x1="60" y1="0" x2="60" y2="100" />
@@ -352,7 +349,6 @@
                                 <line x1="140" y1="0" x2="140" y2="100" />
                                 <line x1="160" y1="0" x2="160" y2="100" />
 
-                                <!-- Horizontální čáry (včetně nulté pro horní ohraničení) -->
                                 <line x1="0" y1="0" x2="160" y2="0" />
                                 <line x1="0" y1="20" x2="160" y2="20" />
                                 <line x1="0" y1="40" x2="160" y2="40" />
@@ -361,42 +357,32 @@
                             </g>
 
                             <g class="scatter-axis">
-                                <!-- Zkrácená osa Y, aby nepřesahovala nad mřížku -->
                                 <line x1="0" y1="100" x2="0" y2="0" marker-end="url(#arrowhead)" />
-                                <!-- Protažená osa X s přesným koncem -->
                                 <line x1="0" y1="100" x2="165" y2="100" marker-end="url(#arrowhead)" />
 
-                                <!-- Popisky os -->
                                 <text x="0" y="-5" text-anchor="middle">Seriozita</text>
                                 <text x="168" y="101.5" text-anchor="start">Zábavnost</text>
                             </g>
                         </g>
 
-                        <!-- 2. kliknutí: Modrá kolečka dole (Zábavnost) -->
+                        <!-- 2. kliknutí -->
                         <g class="fragment scatter-group">
                             <circle cx="120" cy="90" r="7" class="scatter-bubble" style="transform-origin: 120px 90px; --delay: 0.1s;" />
                             <circle cx="138" cy="80" r="9" class="scatter-bubble" style="transform-origin: 138px 80px; --delay: 0.4s;" />
                             <circle cx="145" cy="95" r="7.5" class="scatter-bubble" style="transform-origin: 145px 95px; --delay: 0.7s;" />
                         </g>
 
-                        <!-- 3. kliknutí: Modrá kolečka nahoře (Seriozita) -->
+                        <!-- 3. kliknutí -->
                         <g class="fragment scatter-group">
                             <circle cx="12" cy="18" r="8" class="scatter-bubble" style="transform-origin: 12px 18px; --delay: 0.1s;" />
                             <circle cx="22" cy="10" r="9.5" class="scatter-bubble" style="transform-origin: 22px 10px; --delay: 0.4s;" />
                             <circle cx="28" cy="25" r="7" class="scatter-bubble" style="transform-origin: 28px 25px; --delay: 0.7s;" />
                         </g>
 
-                        <!-- 4. kliknutí: Logo GTA REAL (.png) -->
+                        <!-- 4. kliknutí -->
                         <g class="fragment logo-wow">
-                            <!-- Jemnější pulzující záře pod logem -->
                             <circle cx="160" cy="-5" r="22" class="logo-wow-bg" />
-                            
-                            <!-- Samotné logo vpravo nahoře -->
                             <image href="logo.png" x="145" y="-20" width="30" height="30" />
-                            
-                            <!-- Pomocný rámeček pro vložení loga
-                            <rect x="145" y="-20" width="30" height="30" fill="none" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2 2" rx="4" />
-                            <text x="160" y="20" fill="rgba(255,255,255,0.3)" font-size="3" font-family="var(--font-sans)" text-anchor="middle">logo.png</text> -->
                         </g>
                     </svg>
                 </div>
@@ -437,19 +423,16 @@
             <h1 class="huge-text">Sirény pro IZS vozidla</h1>
         </div>
 
-        <!-- 15. Body sirén + Hůlka (Vycentrovaný vnitřní kontejner) -->
+        <!-- 15. Body sirén + Hůlka -->
         <div class="slide title-slide">
-            <!-- Obal fixní šířky udrží text a hůlku přesně na obrazovce -->
             <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 85%; height: 100%; margin: 0 auto;">
                 
-                <!-- Texty vlevo v kontejneru -->
                 <div style="display: flex; flex-direction: column; gap: 4cqi; align-items: flex-start; text-align: left;">
                     <h1 class="huge-text fragment" style="color: #fff; text-shadow: none; margin: 0;">Propracované</h1>
                     <h1 class="huge-text fragment" style="color: #fff; text-shadow: none; margin: 0;">Geniální</h1>
                     <h1 class="huge-text fragment" style="margin: 0; color: var(--color-main); text-align: left; white-space: nowrap;">Je to jako kouzlo</h1>
                 </div>
                 
-                <!-- Kouzelná hůlka vpravo (mírně zvednutá a posunutá pro rovnováhu) -->
                 <div class="fragment slam" style="display: flex; align-items: center; justify-content: center; transform: translateY(-5cqi) translateX(-15cqi);">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="wand-icon">
                         <path d="M15 4V2"></path>
@@ -643,26 +626,46 @@
         let scale = 1, panning = false, pointX = 0, pointY = 0, start = { x: 0, y: 0 };
         let isNewMap = false;
 
+        mapContent.style.transformOrigin = "0 0";
+
         function setTransform() {
             mapContent.style.transform = `translate(${pointX}px, ${pointY}px) scale(${scale})`;
         }
 
         mapWrapper.addEventListener('mousedown', (e) => {
-            e.preventDefault(); start = { x: e.clientX - pointX, y: e.clientY - pointY }; panning = true;
+            e.preventDefault();
+            start = { x: e.clientX - pointX, y: e.clientY - pointY };
+            panning = true;
         });
         mapWrapper.addEventListener('mouseup', () => { panning = false; });
         mapWrapper.addEventListener('mouseleave', () => { panning = false; });
         mapWrapper.addEventListener('mousemove', (e) => {
             if (!panning) return;
-            pointX = (e.clientX - start.x); pointY = (e.clientY - start.y); setTransform();
+            pointX = (e.clientX - start.x);
+            pointY = (e.clientY - start.y);
+            setTransform();
         });
         mapWrapper.addEventListener('wheel', (e) => {
             e.preventDefault();
-            const xs = (e.clientX - pointX) / scale, ys = (e.clientY - pointY) / scale;
+            const rect = mapWrapper.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const xs = (mouseX - pointX) / scale;
+            const ys = (mouseY - pointY) / scale;
+
             const delta = (e.wheelDelta ? e.wheelDelta : -e.deltaY);
-            (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
-            if (scale < 0.5) scale = 0.5; if (scale > 10) scale = 10;
-            pointX = e.clientX - xs * scale; pointY = e.clientY - ys * scale; setTransform();
+            if (delta > 0) {
+                scale *= 1.2;
+            } else {
+                scale /= 1.2;
+            }
+            if (scale < 0.5) scale = 0.5;
+            if (scale > 10) scale = 10;
+
+            pointX = mouseX - xs * scale;
+            pointY = mouseY - ys * scale;
+            setTransform();
         });
 
         mapBtn.addEventListener('click', () => {
@@ -836,4 +839,3 @@
     </script>
 </body>
 </html>
-```
